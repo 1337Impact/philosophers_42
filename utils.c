@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenkhat <mbenkhat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 15:36:43 by mbenkhat          #+#    #+#             */
-/*   Updated: 2022/02/03 19:33:06 by mbenkhat         ###   ########.fr       */
+/*   Created: 2022/02/03 18:39:42 by mbenkhat          #+#    #+#             */
+/*   Updated: 2022/02/03 18:39:43 by mbenkhat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#include "philo.h"
 
-# include <pthread.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <string.h>
-
-typedef struct s_data
+t_data	*arg_to_struct(char **av)
 {
-	int n_of_philos;
-	int time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	int n_of_times_to_eat;
-	int	time;
-}			t_data;
-
-typedef struct philo_s
-{
-	int			nbr;
-	pthread_t	*thread;
-}			philo_t;
-
-int	check_params(int ac, char **av);
-
-#endif
+	t_data	*data;
+	
+	data = malloc(sizeof(t_data));
+	data->n_of_philos = ft_atoi(av[1]);
+	data->time_to_eat = ft_atoi(av[2]);
+	data->time_to_sleep = ft_atoi(av[3]);
+	data->time_to_die = ft_atoi(av[4]);
+	data->time_to_die = ft_atoi(av[5]);
+	data->n_of_times_to_eat = -1;
+	if (av[6])
+		data->n_of_times_to_eat = ft_atoi(av[6]);
+	return (data);
+}

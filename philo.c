@@ -6,26 +6,32 @@
 /*   By: mbenkhat <mbenkhat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:36:32 by mbenkhat          #+#    #+#             */
-/*   Updated: 2022/02/03 11:55:10 by mbenkhat         ###   ########.fr       */
+/*   Updated: 2022/02/03 19:38:39 by mbenkhat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_data	*arg_to_struct(char **av)
+void	*handler(void *params);
+
+philo_t	*create_philos(t_data *args)
 {
-	t_data	*data;
+	int	i;
+	philo_t	*philos;
 	
-	data = malloc(sizeof(t_data));
-	data->n_of_philos = ft_atoi(av[1]);
-	data->time_to_eat = ft_atoi(av[2]);
-	data->time_to_sleep = ft_atoi(av[3]);
-	data->time_to_die = ft_atoi(av[4]);
-	data->time_to_die = ft_atoi(av[5]);
-	data->n_of_times_to_eat = -1;
-	if (av[6])
-		data->n_of_times_to_eat = ft_atoi(av[6]);
-	return (data);
+	philos = malloc(sizeof(philo_t) * args->n_of_philos);
+	i = 1;
+	while (i <= args->n_of_philos)
+	{
+		philos->nbr = i;
+		pthread_create(philos->thread, NULL, &handler, args);
+	}
+	return (philos);
+}
+
+int	philo(t_data *args)
+{
+	
 }
 
 int	main(int ac, char **av)
@@ -39,5 +45,6 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	data = arg_to_struct(av);
+	philo(data);
 	return (0);
 }

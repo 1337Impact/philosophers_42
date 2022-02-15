@@ -6,7 +6,7 @@
 /*   By: mbenkhat <mbenkhat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:39:42 by mbenkhat          #+#    #+#             */
-/*   Updated: 2022/02/12 15:52:06 by mbenkhat         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:51:14 by mbenkhat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ t_data	*arg_to_struct(char **av)
 	data->time_to_die = ft_atoi(av[4]);
 	data->time_to_die = ft_atoi(av[5]);
 	data->n_of_times_to_eat = -1;
+	data->time = 0;
+	data->forks = data->n_of_philos;
 	if (av[6])
 		data->n_of_times_to_eat = ft_atoi(av[6]);
 	return (data);
+}
+
+void	ft_sleep(int time)
+{
+	usleep(time * 1000);
 }

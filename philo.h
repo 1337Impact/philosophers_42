@@ -6,7 +6,7 @@
 /*   By: mbenkhat <mbenkhat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:36:43 by mbenkhat          #+#    #+#             */
-/*   Updated: 2022/02/14 14:27:44 by mbenkhat         ###   ########.fr       */
+/*   Updated: 2022/02/15 18:56:56 by mbenkhat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 typedef struct s_philo
 {
 	int			nbr;
-	int			fork;
 	pthread_t	*thread;
 	pthread_mutex_t	*mutex;
+	int				last_meal;
 }			t_philo;
 
 typedef struct s_data
@@ -35,6 +35,7 @@ typedef struct s_data
 	int time_to_sleep;
 	int n_of_times_to_eat;
 	int	time;
+	int	forks;
 	t_philo	*philo;
 }			t_data;
 
@@ -42,5 +43,6 @@ int	check_params(int ac, char **av);
 t_data	*arg_to_struct(char **av);
 int ft_strlen(char *str);
 int	ft_atoi(const char *str);
+void	ft_sleep(int time);
 
 #endif

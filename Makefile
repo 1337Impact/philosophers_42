@@ -2,14 +2,14 @@ NAME = philo
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS = philo.c
+SRCS = philo.c utils.c check_params.c libft.c
 
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	gcc $(FLAGS) $(OBJS) -Llibft -lft -o $@
+	gcc $(FLAGS) $(OBJS) -lpthread -o $@
 
 %.o : %.c
 	gcc $(FLAGS) -c $<

@@ -1,40 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_params.c                                     :+:      :+:    :+:   */
+/*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenkhat <mbenkhat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 11:05:37 by mbenkhat          #+#    #+#             */
-/*   Updated: 2022/02/12 15:54:00 by mbenkhat         ###   ########.fr       */
+/*   Created: 2022/02/12 15:52:17 by mbenkhat          #+#    #+#             */
+/*   Updated: 2022/02/12 15:55:12 by mbenkhat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_nbrlen(int nbr)
+int	ft_atoi(const char *str)
 {
 	int	i;
+	int	out;
+	int	a;
 
 	i = 0;
-	if (!nbr)
-		return (1);
-	while (nbr)
+	out = 0;
+	a = 1;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\r'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == ' ')
 	{
-		nbr /= 10;
 		i++;
 	}
-	return (i);
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			a = -1;
+		i++;
+	}
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		out = out * 10 + (str[i] - 48);
+		i++;
+	}
+	return (out * a);
 }
 
-int	check_params(int ac, char **av)
+int ft_strlen(char *str)
 {
-	if (ac != 5 && ac != 6)
-		return (0);
-	while (*(++av))
-	{
-		if (ft_nbrlen(ft_atoi(*av)) != ft_strlen(*av))
-			return (0);
-	}
-	return (1);
+    int i;
+
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
 }

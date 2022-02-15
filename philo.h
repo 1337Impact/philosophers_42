@@ -6,7 +6,7 @@
 /*   By: mbenkhat <mbenkhat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:36:43 by mbenkhat          #+#    #+#             */
-/*   Updated: 2022/02/04 11:57:47 by mbenkhat         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:27:44 by mbenkhat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <string.h>
 
 typedef struct s_philo
 {
 	int			nbr;
+	int			fork;
 	pthread_t	*thread;
 	pthread_mutex_t	*mutex;
 }			t_philo;
@@ -37,5 +39,8 @@ typedef struct s_data
 }			t_data;
 
 int	check_params(int ac, char **av);
+t_data	*arg_to_struct(char **av);
+int ft_strlen(char *str);
+int	ft_atoi(const char *str);
 
 #endif

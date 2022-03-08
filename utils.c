@@ -6,7 +6,7 @@
 /*   By: mbenkhat <mbenkhat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:39:42 by mbenkhat          #+#    #+#             */
-/*   Updated: 2022/02/15 16:51:14 by mbenkhat         ###   ########.fr       */
+/*   Updated: 2022/03/07 13:04:23 by mbenkhat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,28 @@ t_data	*arg_to_struct(char **av)
 	
 	data = malloc(sizeof(t_data));
 	data->n_of_philos = ft_atoi(av[1]);
-	data->time_to_eat = ft_atoi(av[2]);
-	data->time_to_sleep = ft_atoi(av[3]);
-	data->time_to_die = ft_atoi(av[4]);
-	data->time_to_die = ft_atoi(av[5]);
-	data->n_of_times_to_eat = -1;
+	data->time_to_die = ft_atoi(av[2]);
+	data->time_to_eat = ft_atoi(av[3]);
+	data->time_to_sleep = ft_atoi(av[4]);
 	data->time = 0;
-	data->forks = data->n_of_philos;
-	if (av[6])
-		data->n_of_times_to_eat = ft_atoi(av[6]);
+	data->n_of_times_to_eat = -1;
+	data->n_eat = 0;
+	if (av[5])
+		data->n_of_times_to_eat = ft_atoi(av[5]);
 	return (data);
 }
 
-void	ft_sleep(int time)
+void	ft_sleep(int time, int *a_to)
 {
-	usleep(time * 1000);
+	int	t;
+
+	t = 0;
+	if (time < 0)
+		time = -time;
+	while(t < time)
+	{
+		usleep(10000);
+		*a_to += 10;
+		t += 10;
+	}
 }

@@ -21,3 +21,6 @@ fclean : clean
 	rm -f $(NAME)
 
 re : fclean all
+
+test : all clean
+	echo "---------------------------------------" && ./philo 4 410 200 100 7

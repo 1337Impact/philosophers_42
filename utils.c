@@ -6,7 +6,7 @@
 /*   By: mbenkhat <mbenkhat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:39:42 by mbenkhat          #+#    #+#             */
-/*   Updated: 2022/03/07 13:04:23 by mbenkhat         ###   ########.fr       */
+/*   Updated: 2022/03/11 11:08:06 by mbenkhat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_data	*arg_to_struct(char **av)
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
 	data->time = 0;
+	data->died = 0;
 	data->n_of_times_to_eat = -1;
 	data->n_eat = 0;
 	if (av[5])
@@ -29,17 +30,22 @@ t_data	*arg_to_struct(char **av)
 	return (data);
 }
 
-void	ft_sleep(int time, int *a_to)
+int	ft_sleep(int time, t_data *data)
 {
 	int	t;
+	t_philo	*ph;
+	struct timeval	t1;
+	
 
 	t = 0;
-	if (time < 0)
-		time = -time;
+	ph = data->philo;
 	while(t < time)
 	{
 		usleep(10000);
-		*a_to += 10;
+		gettimeofday(&t1, NULL);
+		data->time = t1.tv_usec / 1000 - data->init_time;
+		// if (ph->last_meal + data->time_to_die >= data->time)
 		t += 10;
 	}
+	return (0);
 }

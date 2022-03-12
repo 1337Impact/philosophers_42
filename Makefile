@@ -1,8 +1,7 @@
 NAME = philo
-
 FLAGS = -Wall -Wextra -Werror
 
-SRCS = philo.c utils.c check_params.c libft.c
+SRCS = philo.c utils.c check_params.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -23,4 +22,4 @@ fclean : clean
 re : fclean all
 
 test : all clean
-	echo "---------------------------------------" && ./philo 4 410 200 100 7
+	echo "---------------------------------------" && ./philo 4 410 200 100
